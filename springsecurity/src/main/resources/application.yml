@@ -1,0 +1,7 @@
+
+## spring security??
+spring:
+  security:
+    user:
+      name: yunn
+      password: 123

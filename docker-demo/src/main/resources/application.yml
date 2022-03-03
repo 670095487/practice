@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: ${PASSWORD}
+    url: jdbc:mysql://${HOST}:${PORT}/docker_demo?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+#    host: 81.69.227.238
+#    port: 2672
+#    password:
+#    database: 0
+server:
+  port: 8081
+
+
+
+
