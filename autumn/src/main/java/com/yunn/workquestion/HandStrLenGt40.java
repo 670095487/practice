@@ -1,4 +1,4 @@
-package com.yunn.test;
+package com.yunn.workquestion;
 
 import lombok.Builder;
 import lombok.Data;
