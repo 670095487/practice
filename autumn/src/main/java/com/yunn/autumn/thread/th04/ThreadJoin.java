@@ -1,6 +1,9 @@
 package com.yunn.autumn.thread.th04;
 
+import lombok.SneakyThrows;
 import org.junit.Test;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * ThreadJoin
@@ -46,5 +49,26 @@ public class ThreadJoin {
             }
         });
         thread02.start();
+    }
+
+    @Test
+    @SneakyThrows
+    public void test() {
+        Thread t1 = new Thread(()->{
+            for (int i = 0; i < 110; i++) {
+                System.out.println(Thread.currentThread().getName() + " is runing , times: " + i);
+                try {
+                    TimeUnit.SECONDS.sleep(2);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        t1.start();
+        Thread t2 = new Thread(()->{
+
+        });
+        t2.setDaemon(true);
+        t2.start();
     }
 }

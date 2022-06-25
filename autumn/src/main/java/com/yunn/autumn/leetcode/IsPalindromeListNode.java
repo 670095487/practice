@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author yunN
@@ -20,7 +21,7 @@ public class IsPalindromeListNode {
         }
 
         for (int i = 0; i < rs.size(); i++) {
-            if (rs.get(i) != rs.get(rs.size() - 1 - i)) {
+            if (!Objects.equals(rs.get(i), rs.get(rs.size() - 1 - i))) {
                 return false;
             }
         }

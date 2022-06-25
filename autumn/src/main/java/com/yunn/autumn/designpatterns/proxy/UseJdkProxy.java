@@ -1,7 +1,5 @@
 package com.yunn.autumn.designpatterns.proxy;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
@@ -15,12 +13,9 @@ public class UseJdkProxy {
         UserService useServiceProxyByJdk = (UserService) Proxy.newProxyInstance(
                 UseJdkProxy.class.getClassLoader(),
                 userService.getClass().getInterfaces(),
-                new InvocationHandler() {
-                    @Override
-                    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                        System.out.println("Use Jdk proxy to print log ...");
-                        return method.invoke(userService, args);
-                    }
+                (proxy, method, args1) -> {
+                    System.out.println("Use Jdk proxy to print log ...");
+                    return method.invoke(userService, args1);
                 });
         useServiceProxyByJdk.sayHello();
     }

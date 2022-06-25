@@ -2,6 +2,9 @@ package com.yunn.autumn.leetcode;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author yunN
  * @date 2022/05/11
@@ -30,12 +33,19 @@ public class CanConstruct {
 
     @Test
     public void test() {
-        canConstruct("aa", "aab");
+        canConstruct("789754731", "7897547318940");
     }
 
     @Test
     public void test1() {
-        int a = 'b' - 'a';
-        System.out.println(a);
+        List<Integer> del = new ArrayList<>();
+        List<Integer> db = new ArrayList<>();
+        del.add(123);
+        del.add(121);
+        db.add(123);
+        db.add(121);
+        db.add(122);
+        System.out.println(del.retainAll(db));
+
     }
 }

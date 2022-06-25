@@ -11,10 +11,10 @@ import java.util.concurrent.locks.ReentrantLock;
  */
  public class Print {
 
-    private Lock lock = new ReentrantLock();
-    private Condition conditionA = lock.newCondition();
-    private Condition conditionB = lock.newCondition();
-    private Condition conditionC = lock.newCondition();
+    private final Lock lock = new ReentrantLock();
+    private final Condition conditionA = lock.newCondition();
+    private final Condition conditionB = lock.newCondition();
+    private final Condition conditionC = lock.newCondition();
     private int number = 1;
 
     public void printA() {

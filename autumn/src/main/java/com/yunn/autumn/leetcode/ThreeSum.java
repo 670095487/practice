@@ -12,25 +12,10 @@ import java.util.List;
  */
 public class ThreeSum {
 
-    public List<List<Integer>> threeSum1(int[] nums) {
-        Arrays.sort(nums);
-        int n = nums.length;
+    List<List<Integer>> twoSum(int[] nums, int target, int start) {
         List<List<Integer>> res = new ArrayList<>();
-        Arrays.stream(nums).forEach(s -> {
-            List<List<Integer>> basicRes = basicSum(nums, -s);
-            for (List<Integer> basicRe : basicRes) {
-                ArrayList<Integer> list = new ArrayList<>(basicRe);
-                list.add(s);
-                res.add(list);
-            }
-        });
-        return res;
-    }
-
-    List<List<Integer>> basicSum(int[] nums, int target) {
         Arrays.sort(nums);
-        List<List<Integer>> res = new ArrayList<>();
-        int low = 0, high = nums.length - 1;
+        int low = start, high = nums.length - 1;
         while (low < high) {
             int sum = nums[low] + nums[high];
             int left = nums[low], right = nums[high];
@@ -43,7 +28,10 @@ public class ThreeSum {
                     high--;
                 }
             } else {
-                res.add(Arrays.asList(left, right));
+                List<Integer> sub = new ArrayList<>();
+                sub.add(low);
+                sub.add(high);
+                res.add(sub);
                 while (low < high && nums[low] == left) {
                     low++;
                 }
@@ -53,11 +41,6 @@ public class ThreeSum {
             }
         }
         return res;
-    }
-
-    @Test
-    public void test() {
-        System.out.println(threeSum(new int[]{-1, 0, 1, 2, -1, -4}));
     }
 
     public List<List<Integer>> threeSum(int[] nums) {// 总时间复杂度：O(n^2)
@@ -74,7 +57,6 @@ public class ThreeSum {
             while (left < right) {
                 if (nums[left] + nums[right] == target) {
                     ans.add(new ArrayList<>(Arrays.asList(nums[i], nums[left], nums[right])));
-
                     // 现在要增加 left，减小 right，但是不能重复，比如: [-2, -1, -1, -1, 3, 3, 3], i = 0,
                     // left = 1, right = 6, [-2, -1, 3] 的答案加入后，需要排除重复的 -1 和 3
                     left++;
@@ -100,8 +82,14 @@ public class ThreeSum {
         return 0;
     }
 
-    @Test
-    public void test2() {
-        System.out.println("a".getBytes().toString());
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        return null;
     }
+
+
+    @Test
+    public void test() {
+        System.out.println(Runtime.getRuntime().availableProcessors());
+    }
+
 }

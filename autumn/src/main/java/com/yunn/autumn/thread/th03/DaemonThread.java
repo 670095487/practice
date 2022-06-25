@@ -1,5 +1,7 @@
 package com.yunn.autumn.thread.th03;
 
+import org.junit.Test;
+
 /**
  * DaemonThread
  *
@@ -34,18 +36,28 @@ public class DaemonThread {
                         }
                     }
                 };
-                // a.setDaemon(true);//如果将a设置为守护线程，那么在A线程启动a后，随着A线程的结束，a也会结束，
+                a.setDaemon(true);//如果将a设置为守护线程，那么在A线程启动a后，随着A线程的结束，a也会结束，
                 // 这个方法需要在调用start()方法之前调用，否则不生效
                 a.start();
                 try {
                     System.out.println("A+++ had done ");
-                    Thread.sleep(1_000);
+                    Thread.sleep(10_000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         };
-        A.setDaemon(true);//如果将A设置为守护线程，那么在main线程启动A后，随着main线程的结束，A也会结束
+        // A.setDaemon(true);//如果将A设置为守护线程，那么在main线程启动A后，随着main线程的结束，A也会结束
         A.start();
+    }
+
+
+    enum A {
+        FUCKYOU
+    }
+
+    @Test
+    public void test() {
+        System.out.println(A.FUCKYOU);
     }
 }
