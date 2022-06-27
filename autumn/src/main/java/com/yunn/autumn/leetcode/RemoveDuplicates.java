@@ -32,6 +32,17 @@ public class RemoveDuplicates {
         return i + 1;
     }
 
+    public int removeDuplicates2(int[] nums) {
+        int index = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (i - 2 >= 0 && nums[i - 2] != nums[i] || i < 2) {
+                nums[index] = nums[i];
+                index++;
+            }
+        }
+        return index;
+    }
+
     public static void main(String[] args) {
         int[] nums = {1, 1, 2};
         System.out.println(removeDuplicates(nums));
