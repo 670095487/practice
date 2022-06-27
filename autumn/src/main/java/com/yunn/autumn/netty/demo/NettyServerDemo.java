@@ -4,9 +4,12 @@ import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
+import io.netty.channel.ChannelPipeline;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
 
 /**
  * @author yunN
@@ -15,7 +18,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 public class NettyServerDemo {
 
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         NioEventLoopGroup bossGroup = new NioEventLoopGroup(1);
         NioEventLoopGroup workerGroup = new NioEventLoopGroup(10);
 
@@ -27,7 +30,11 @@ public class NettyServerDemo {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(new NettyServerHandler());
+
+                            ChannelPipeline pp = ch.pipeline();
+                            pp.addLast("decoder", new StringDecoder());
+                            pp.addLast("encoder", new StringEncoder());
+                            pp.addLast(new NettyServerHandler());
                         }
                     });
             System.out.println("Netty Server start...");

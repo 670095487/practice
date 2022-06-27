@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
 
 
@@ -11,18 +12,18 @@ import io.netty.util.CharsetUtil;
  * @author yunN
  * @date 2022/06/22
  */
-public class NettyServerHandler extends ChannelInboundHandlerAdapter {
+public class NettyServerHandler extends SimpleChannelInboundHandler<String> {
+
+    // client -> server
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.println("Server read thread'name : " + Thread.currentThread().getName());
-        ByteBuf buf = (ByteBuf) msg;
-        System.out.println("Client send msg content : " + buf.toString(CharsetUtil.UTF_8));
+    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+        System.out.println("收到客户端 ( " +ctx.channel().remoteAddress() + " )"+ "的消息 -> " + msg);
     }
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        ByteBuf buf = Unpooled.copiedBuffer("Hello client", CharsetUtil.UTF_8);
+        ByteBuf buf = Unpooled.copiedBuffer("客户端信息已经收到……", CharsetUtil.UTF_8);
         ctx.writeAndFlush(buf);
     }
 

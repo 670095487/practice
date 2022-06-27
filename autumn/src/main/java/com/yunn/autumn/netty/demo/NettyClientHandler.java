@@ -3,26 +3,25 @@ package com.yunn.autumn.netty.demo;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
 
 /**
  * @author yunN
  * @date 2022/06/22
  */
-public class NettyClientHandler extends ChannelInboundHandlerAdapter {
+public class NettyClientHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        ByteBuf buf = Unpooled.copiedBuffer("HelloServer", CharsetUtil.UTF_8);
-        ctx.writeAndFlush(buf);
+    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+        System.out.println("收到服务端 ( " + ctx.channel().remoteAddress() + " )" + "的消息 -> " + msg);
     }
 
+    // 信息发给其他客户端
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf buf = (ByteBuf) msg;
-        System.out.println("收到服务端的消息:" + buf.toString(CharsetUtil.UTF_8));
-        System.out.println("服务端的地址： " + ctx.channel().remoteAddress());
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        ByteBuf buf = Unpooled.copiedBuffer("ok, got it", CharsetUtil.UTF_8);
+        ctx.writeAndFlush(buf);
     }
 
     @Override
