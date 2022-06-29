@@ -1,0 +1,4 @@
+1.redis中string和hash?
+  hash可以防止外部key过多的问题，比如要缓存的是一个对象，User(name,age,address...)这样如果使用string,会产生很多的key，在高并发的时候
+会影响外部性能。
+2.redis分布式锁的实现？
