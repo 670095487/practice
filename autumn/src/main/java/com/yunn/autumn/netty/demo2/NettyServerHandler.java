@@ -1,23 +1,30 @@
-package com.yunn.autumn.netty.demo;
+package com.yunn.autumn.netty.demo2;
 
+import com.yunn.autumn.netty.UserForTestSerializer;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
+import org.junit.Test;
+
+import java.sql.SQLOutput;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 
 /**
  * @author yunN
  * @date 2022/06/22
  */
-class NettyServerHandler extends SimpleChannelInboundHandler<String> {
+class NettyServerHandler extends SimpleChannelInboundHandler<UserForTestSerializer> {
 
     // client -> server
 
+
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-        System.out.println("收到客户端 ( " + ctx.channel().remoteAddress() + " )" + "的消息 -> " + msg);
+    protected void channelRead0(ChannelHandlerContext ctx, UserForTestSerializer msg) throws Exception {
+        
     }
 
     @Override
