@@ -167,6 +167,19 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.openrewrite.maven</groupId>
+                <artifactId>rewrite-maven-plugin</artifactId>
+                <version>4.25.0</version>
+                <configuration>
+                    <activeRecipes>
+                        <recipe>org.openrewrite.java.cleanup.Cleanup</recipe>
+                    </activeRecipes>
+                    <checkstyleConfigFile>
+                        checkstyle.xml
+                    </checkstyleConfigFile>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>

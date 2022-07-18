@@ -14,7 +14,7 @@
     <name>autumn-nacos</name>
     <description>autumn-nacos</description>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <nacos-config-spring-boot.version>0.2.10</nacos-config-spring-boot.version>
     </properties>
     <dependencies>
@@ -73,6 +73,19 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.openrewrite.maven</groupId>
+                <artifactId>rewrite-maven-plugin</artifactId>
+                <version>4.25.0</version>
+                <configuration>
+                    <activeRecipes>
+                        <recipe>org.openrewrite.java.cleanup.Cleanup</recipe>
+                    </activeRecipes>
+                    <checkstyleConfigFile>
+                        checkstyle.xml
+                    </checkstyleConfigFile>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
@@ -88,3 +101,4 @@
     </build>
 
 </project>
+<!--/Library/Java/JavaVirtualMachines/jdk-14.0.2.jdk/Contents/Home-->

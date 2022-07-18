@@ -15,16 +15,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class TranscationLearnServiceTest {
 
     @Autowired
-    TranscationLearnService transcationLearnService;
+    TransactionalLearnService transactionalLearnService;
 
     @Test
     public void test() {
-        transcationLearnService.haveNestedTransaction();
+        transactionalLearnService.haveNestedTransaction();
     }
 
     @Test
     public void testReadYmlProps() {
-        transcationLearnService.readYmlProps();
+        transactionalLearnService.readYmlProps();
     }
 
 }

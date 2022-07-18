@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Service
 @RequiredArgsConstructor
-public class TranscationLearnService {
+public class TransactionalLearnService {
 
     private final TranscationMapper transcationMapper;
 
@@ -31,12 +31,12 @@ public class TranscationLearnService {
         TranscationLearnDo t2 = TranscationLearnDo.builder().name("t2").build();
         transcationMapper.save(t1);
         transcationMapper.save(t2);
-        haveOwnTranscation();
+        haveOwnTransaction();
         transcationMapper.findAll().forEach(System.out::println);
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void haveOwnTranscation() {
+    public void haveOwnTransaction() {
         TranscationLearnDo t3 = TranscationLearnDo.builder().name("t3").build();
         TranscationLearnDo t4 = TranscationLearnDo.builder().name("t3").build();
         transcationMapper.save(t3);

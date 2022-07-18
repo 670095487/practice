@@ -2,7 +2,7 @@ package com.yunn.autumnnacos.controller;
 
 
 import com.alibaba.nacos.api.config.annotation.NacosValue;
-import com.yunn.autumnnacos.service.impl.TranscationLearnService;
+import com.yunn.autumnnacos.service.impl.TransactionalLearnService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final TranscationLearnService transcationLearnService;
+    private final TransactionalLearnService transactionalLearnService;
 
     @GetMapping
     public String testConnect() {
@@ -32,6 +32,6 @@ public class UserController {
 
     @GetMapping("/yml")
     public void readYml() {
-        transcationLearnService.readYmlProps();
+        transactionalLearnService.readYmlProps();
     }
 }
