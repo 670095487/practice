@@ -1,6 +1,5 @@
 package com.yunn.autumnnacos.service.impl;
 
-import com.yunn.autumnnacos.NacosLearnApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,11 @@ public class TranscationLearnServiceTest {
     @Test
     public void test() {
         transcationLearnService.haveNestedTransaction();
+    }
+
+    @Test
+    public void testReadYmlProps() {
+        transcationLearnService.readYmlProps();
     }
 
 }
