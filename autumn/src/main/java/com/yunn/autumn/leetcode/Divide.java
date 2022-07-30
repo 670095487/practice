@@ -4,14 +4,17 @@ import org.junit.Test;
 
 /**
  * @author yunN
- * @date 2022/05/30
+ * @date 2022/05/02.
  */
 public class Divide {
 
+    public int divide(int dividend, int divisor) {
+
+        return 1;
+    }
 
     @Test
     public void test() {
-        // & 相同为1 ，不同为0 （二进制下的）
-        System.out.println(3&1);
+        int[] arr = new int[]{5};
     }
 }
