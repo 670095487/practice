@@ -1,11 +1,14 @@
 package com.yunn.autumnnacos.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -15,9 +18,11 @@ import java.util.List;
 @ConfigurationProperties(prefix = "test1")
 @Component
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class YmlProps {
 
-    private List<String> vals = new ArrayList<>();
+    public Set<String> valsTry = new HashSet<>();
 
 }
 

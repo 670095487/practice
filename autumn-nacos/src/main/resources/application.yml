@@ -19,8 +19,9 @@ test:
   val: cn,cm,cx,cz
 
 test1:
-  vals:
+  vals-try:
     - cn
     - cm
     - cx
+    - cn
 
