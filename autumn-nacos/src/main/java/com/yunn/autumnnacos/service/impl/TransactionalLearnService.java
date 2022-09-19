@@ -1,6 +1,7 @@
 package com.yunn.autumnnacos.service.impl;
 
 import com.yunn.autumnnacos.mapper.TranscationMapper;
+import com.yunn.autumnnacos.model.GroupDo;
 import com.yunn.autumnnacos.model.TranscationLearnDo;
 import com.yunn.autumnnacos.model.YmlProps;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ import java.util.Set;
  */
 @Service
 @RequiredArgsConstructor
-public class TranscationLearnService {
+public class TransactionalLearnService {
 
     private final TranscationMapper transcationMapper;
 
@@ -33,9 +34,9 @@ public class TranscationLearnService {
         TranscationLearnDo t2 = TranscationLearnDo.builder().name("t2").build();
         transcationMapper.save(t1);
         transcationMapper.save(t2);
-        // List<TranscationLearnDo> rs = transcationMapper.findAll();
-        // haveOwnTranscation();
-        // System.out.println(rs.isEmpty());
+        List<TranscationLearnDo> rs = transcationMapper.findAll();
+        haveOwnTranscation();
+        System.out.println(rs.isEmpty());
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -50,4 +51,7 @@ public class TranscationLearnService {
         return ymlProps.getValsTry();
     }
 
+    public List<GroupDo> getGroup() {
+        return transcationMapper.queryByGroup();
+    }
 }

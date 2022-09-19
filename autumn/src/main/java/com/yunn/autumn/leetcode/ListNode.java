@@ -1,12 +1,14 @@
 package com.yunn.autumn.leetcode;
 
+import lombok.Data;
+
 /**
  * @author yunN
  * @date 2022/04/16.
  */
 public class ListNode {
-    int val;
-    ListNode next;
+   public int val;
+   public ListNode next;
 
     ListNode() {
     }

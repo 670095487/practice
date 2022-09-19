@@ -41,5 +41,7 @@ public class LongestPalindrome {
     public void test() {
         System.out.println(longestPalindrome("abacdaadc"));
     }
+
+
 }
 

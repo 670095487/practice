@@ -17,7 +17,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "transcation_learn")
+@Table(name = "transcation_learn")// accountDo
 public class TranscationLearnDo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,5 +26,8 @@ public class TranscationLearnDo {
 
     @Column(name = "name")
     String name;
+
+    @Column(name = "amount")
+    int amount;
 
 }

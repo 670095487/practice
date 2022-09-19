@@ -1,5 +1,6 @@
 package com.yunn.autumn.leetcode.dfsandbfs;
 
+import com.yunn.autumn.leetcode.TreeNode;
 import org.junit.Test;
 
 import java.util.ArrayList;

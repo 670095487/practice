@@ -1,6 +1,6 @@
 package com.yunn.autumn.leetcode.tree;
 
-import com.yunn.autumn.leetcode.dfsandbfs.TreeNode;
+import com.yunn.autumn.leetcode.TreeNode;
 
 import java.util.HashMap;
 

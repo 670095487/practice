@@ -1,4 +1,4 @@
-package com.yunn.autumn.leetcode.dfsandbfs;
+package com.yunn.autumn.leetcode;
 
 import lombok.Data;
 

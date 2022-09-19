@@ -15,10 +15,10 @@ import java.util.Set;
  */
 @SpringBootTest
 @RunWith(value = SpringRunner.class)
-public class TranscationLearnServiceTest {
+public class TransactionalLearnServiceTest {
 
     @Autowired
-    TranscationLearnService transcationLearnService;
+    TransactionalLearnService transactionalLearnService;
 
     @Autowired
     YmlProps ymlProps;
@@ -27,20 +27,19 @@ public class TranscationLearnServiceTest {
 
     @Test
     public void test() {
-        transcationLearnService.haveNestedTransaction();
+        transactionalLearnService.haveNestedTransaction();
     }
 
     @Test
     public void testReadYmlProps() {
-        Set<String> set = transcationLearnService.readYmlProps();
+        Set<String> set = transactionalLearnService.readYmlProps();
         String serach = "Cn";
         System.out.println(set.stream().anyMatch(serach::equalsIgnoreCase));
     }
 
     @Test
-    public void testYmlProps() {
-        Set<String> vals = ymlProps.getValsTry();
-        vals.forEach(System.out::println);
+    public void testJpaCustomerReturnObj() {
+        System.out.println(transactionalLearnService.getGroup());
     }
 
 }
