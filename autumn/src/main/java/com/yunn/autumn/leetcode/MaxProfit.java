@@ -6,8 +6,16 @@ package com.yunn.autumn.leetcode;
  */
 public class MaxProfit {
 
+
     public int maxProfit(int[] prices) {
-        
+        int ans = 0;
+        for (int i = 1; i < prices.length; i++) {
+            ans += Math.max(prices[i] - prices[i - 1], ans);
+        }
+        return ans;
+    }
+
+    public int maxProfit2(int[] prices) {
         return 0;
     }
 }
