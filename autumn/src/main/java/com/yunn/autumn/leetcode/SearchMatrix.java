@@ -63,4 +63,13 @@ public class SearchMatrix {
             }
         }
     }
+
+    public boolean searchMatrix2(int[][] matrix, int target) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        for (int i = 0; i < m; i++) {
+
+        }
+        return false;
+    }
 }
