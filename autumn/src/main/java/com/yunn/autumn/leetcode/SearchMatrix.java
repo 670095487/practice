@@ -64,12 +64,8 @@ public class SearchMatrix {
         }
     }
 
-    public boolean searchMatrix2(int[][] matrix, int target) {
-        int m = matrix.length;
-        int n = matrix[0].length;
-        for (int i = 0; i < m; i++) {
-
-        }
-        return false;
+    @Test
+    public void t1() {
+        System.out.println(String.format("http://%s:%s", "127.0.0.1", "9090"));
     }
 }

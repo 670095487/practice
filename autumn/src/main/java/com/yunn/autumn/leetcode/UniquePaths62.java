@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author yunN
  * @date 2022/06/16
  */
-public class UniquePaths {
+public class UniquePaths62 {
 
     int[][] memo;
 
