@@ -2,6 +2,7 @@ package com.yunn.autumnnacos.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author yunN
@@ -9,7 +10,8 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class GroupDo {
+@NoArgsConstructor
+public class Group {
 
     public String name;
 

@@ -33,13 +33,12 @@ public class TransactionalLearnServiceTest {
     @Test
     public void testReadYmlProps() {
         Set<String> set = transactionalLearnService.readYmlProps();
-        String serach = "Cn";
-        System.out.println(set.stream().anyMatch(serach::equalsIgnoreCase));
+        String search = "Cn";
+        System.out.println(set.stream().anyMatch(search::equalsIgnoreCase));
     }
 
     @Test
-    public void testJpaCustomerReturnObj() {
-        System.out.println(transactionalLearnService.getGroup());
+    public void testConvertDToT() {
+        System.out.println(transactionalLearnService.convertDToT());
     }
-
 }

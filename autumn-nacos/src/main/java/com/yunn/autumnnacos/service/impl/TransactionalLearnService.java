@@ -1,7 +1,8 @@
 package com.yunn.autumnnacos.service.impl;
 
 import com.yunn.autumnnacos.mapper.TranscationMapper;
-import com.yunn.autumnnacos.model.GroupDo;
+import com.yunn.autumnnacos.model.Group;
+import com.yunn.autumnnacos.model.GroupDTO;
 import com.yunn.autumnnacos.model.TranscationLearnDo;
 import com.yunn.autumnnacos.model.YmlProps;
 import lombok.RequiredArgsConstructor;
@@ -9,8 +10,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author yunN
@@ -51,7 +55,29 @@ public class TransactionalLearnService {
         return ymlProps.getValsTry();
     }
 
-    public List<GroupDo> getGroup() {
-        return transcationMapper.queryByGroup();
+    public List<GroupDTO> convertDToT() {
+
+        List<Group> group = getGroup();
+        List<GroupDTO> ans = new ArrayList<>();
+        for (Group g : group) {
+            GroupDTO t = new GroupDTO();
+            GroupDTO groupDTO = t.convertFrom(g);
+            ans.add(groupDTO);
+
+        }
+        return ans;
+    }
+
+    private List<Group> getGroup() {
+        Group group = new Group();
+        group.setName("n1");
+        group.setX(1L);
+        Group group2 = new Group();
+        group2.setName("n2");
+        group2.setX(2L);
+        Group group3 = new Group();
+        group3.setName("n3");
+        group3.setX(3L);
+        return Arrays.asList(group, group2, group3);
     }
 }
