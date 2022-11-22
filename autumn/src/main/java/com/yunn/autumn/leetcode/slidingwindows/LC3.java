@@ -1,4 +1,4 @@
-package com.yunn.autumn.leetcode;
+package com.yunn.autumn.leetcode.slidingwindows;
 
 import org.junit.Test;
 
