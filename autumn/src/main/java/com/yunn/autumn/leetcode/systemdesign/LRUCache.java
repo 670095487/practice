@@ -1,4 +1,4 @@
-package com.yunn.autumn.leetcode.somedesign;
+package com.yunn.autumn.leetcode.systemdesign;
 
 import org.junit.Test;
 
