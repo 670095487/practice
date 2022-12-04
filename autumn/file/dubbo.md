@@ -17,5 +17,13 @@
 - 系统复杂度高，服务拆分，功能单一，调用链路长，使用传统的http调用
 不能满足需求，dubbo可以做到**管理服务**，**负载均衡**，**服务容错**
 
+#### 4. dubbo的可扩展机制SPI
+
+- @Reference : 生成dubboService的代理对象
+
+```java
+    ReferenceAnnotationBeanPostProcessor.class -> AnnotationBeanPostProcessor.class -> doGetInjectedBean()
+```
+
 
 

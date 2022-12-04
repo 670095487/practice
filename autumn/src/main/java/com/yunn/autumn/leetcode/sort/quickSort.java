@@ -8,5 +8,7 @@ public class quickSort {
 
     public void quickSort(int[] nums) {
 
+
+
     }
 }
