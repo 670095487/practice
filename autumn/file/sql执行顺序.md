@@ -53,3 +53,18 @@ right join也是类似的，而full join则是全集，会将2张表中所有的
 
 9.order by `此时order by后接的字段，如果在select语句中已经指定了别名，那么请使用别名作为排序字段名，使用原来的字段名将失效` *原因是因为，order by的结果集来自distinct,
 而distinct的结果集来自select后生成的结果集*
+
+#### MySql
+
+- 脏读：读未提交。
+- 幻读：A事务窗口对table作出了全表修改，B事务此时提交一条insert，此时在事务A中select可以查询到B事务新增的这条数据，
+仿佛并没有执行全表修改sql。
+- S锁和X锁--->就是读锁（***读读可以共存***）和写锁（***互斥锁***）
+>MySql ***S锁*** 使用方式：
+> 
+> 1.select * from XXX for update 
+> 
+> 2.select * from XXX in share mode
+
+
+

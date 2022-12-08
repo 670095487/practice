@@ -46,4 +46,13 @@
 - 支持多种协议rpc协议，配置上很灵活
 - 使用Netty和Zookeeper保证了性能和稳定性。
 
+#### 7. dubbo的源码
+
+##### 7.1服务导出 
+- 在springboot中的入口方法:```onApplicationEvent(ContextRefreshedEvent event)```
+- dubbo开始的方法：```ServiceBean.export()```
+- 读取配置（取最高优先级的配置） -> 服务注册 -> 启动netty/tomcat -> 服务提供者，监听动态配置
+- ServiceBean -> ServiceConfig -> abstract
+- systemConfig:jvm级别（idea中以-D配置的环境变量就是jvm级别），environmentConfig:系统级别，
+
 
