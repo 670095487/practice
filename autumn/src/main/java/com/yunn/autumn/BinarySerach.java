@@ -33,6 +33,6 @@ public class BinarySerach {
 
     @Test
     public void test() {
-        System.out.println(binarySearch(new int[]{1, 2, 3}, 5));
+        System.out.println(binarySearch(new int[]{1}, 1));
     }
 }
