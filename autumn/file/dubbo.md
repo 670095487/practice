@@ -52,7 +52,11 @@
 - 在springboot中的入口方法:```onApplicationEvent(ContextRefreshedEvent event)```
 - dubbo开始的方法：```ServiceBean.export()```
 - 读取配置（取最高优先级的配置） -> 服务注册 -> 启动netty/tomcat -> 服务提供者，监听动态配置
-- ServiceBean -> ServiceConfig -> abstract
+- ServiceBean -> ServiceConfig -> abstract -> registyProtocal -> dubboProtocal(spi相关)
 - systemConfig:jvm级别（idea中以-D配置的环境变量就是jvm级别），environmentConfig:系统级别，
+
+#### 8.服务调用
+
+
 
 
