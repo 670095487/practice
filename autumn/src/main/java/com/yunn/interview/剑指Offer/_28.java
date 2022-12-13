@@ -10,7 +10,7 @@ public class _28 {
 
     // 镜像翻转，判等
     public boolean isSymmetric(TreeNode root) {
-        if (root == null) return false;
+        if (root == null) return true;
         return check(root, root);
     }
 
