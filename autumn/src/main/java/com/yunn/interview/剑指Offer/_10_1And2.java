@@ -21,6 +21,7 @@ public class _10_1And2 {
         return l3;
     }
 
+    // 最优解
     public int numsWay(int n) {
         final int mod = 1000000007;
         int l1 = 1, l2 = 1, sum = 0;
@@ -32,7 +33,7 @@ public class _10_1And2 {
         return l1;
     }
 
-    // 1 or 2 --
+    // 递归解法
     public int numWays(int n) {
         int[] dp = new int[n + 1];
         return dp(n, dp);
@@ -40,14 +41,26 @@ public class _10_1And2 {
 
     private int dp(int n, int[] dp) {
         if (n < 2) {
-            return n;
+            return 1;
         }
         // 已有记录，返回即可
         if (dp[n] > 0) {
             return dp[n];
         }
         // dp 通项 ? 一次1阶 或 一次2阶
-        return dp(n - 1, dp) + dp(n - 2, dp);
+        return dp(n - 1, dp) % 1000000007 + dp(n - 2, dp) % 1000000007;
+    }
+
+    // 动态规划解法
+    public int numWays_2(int n) {
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+        dp[2] = 2;
+        for (int i = 3; i < n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        return dp[n];
     }
 
 
