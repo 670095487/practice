@@ -63,6 +63,67 @@
 - invoker的生成流程 
 - dubbo的心跳任务默认使用的netty自带的，除非使用了其他的server，不支持心跳才会使用dubbo自己实现的心跳
 
+#### 9. 配置文件
+
+```yml
+dubbo:
+  application:
+    id: dubbo-provider
+    name: dubbo-provider
+  protocol:
+    id: dubbo
+    name: dubbo
+    port: 20881
+  registry:
+    id: dubbo-provider-registry
+    address: zookeeper://139.196.59.54:2181
+    timeout: 60000
+  provider:
+    timeout: 5000
+```
+
+```xml
+
+
+<dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.20221124</groupId>
+            <artifactId>dubbo-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.dubbo/dubbo-spring-boot-starter -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+            <version>2.7.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+            <version>5.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>5.1.0</version>
+        </dependency>
+    </dependencies>```
+
 
 
 

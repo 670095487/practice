@@ -24,4 +24,5 @@ test1:
     - cm
     - cx
     - cn
-
+server:
+  port: 9001
