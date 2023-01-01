@@ -2,6 +2,7 @@ package com.yunn.autumn.leetcode.sort;
 
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -52,7 +53,8 @@ public class quickSort {
 
     @Test
     public void test() {
-        int[] arr = {5,2,3,1};
-        sortArray(arr);
+        int[] arr = {5, 2, 3, 1};
+        // sortArray(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }

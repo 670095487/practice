@@ -1,5 +1,9 @@
 package com.yunn.workquestion;
 
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * @author yunN
  * @date 2022/12/13
@@ -7,7 +11,8 @@ package com.yunn.workquestion;
 public class NullException_1 {
 
     public static void main(String[] args) {
-        String s = null;
-        System.out.println(s.equalsIgnoreCase("dfs"));
+        System.out.println(Stream.of("a", "a", "b", "", " ", null)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList()));
     }
 }

@@ -83,8 +83,6 @@ dubbo:
 ```
 
 ```xml
-
-
 <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -122,8 +120,30 @@ dubbo:
             <artifactId>curator-recipes</artifactId>
             <version>5.1.0</version>
         </dependency>
-    </dependencies>```
+    </dependencies> 
+```
+    
+    
+    
+    
+    
+    
+    
+#### 10.关于dubbo是如何读取配置以及获取配置的几种方式
 
+ - dubbo项目有几种配置 （按照优先级排列）
+   - SystemConfiguration [jvm级别的环境变量，idea中使用-D配置的变量就是jvm级别]
+   - EnvironmentConfiguration [操作系统级别的环境变量]
+   - InmemoryConfiguration [来源于appExternalConfigurationMap]
+   - InmemoryConfigurationexternalConfigurationMap ?
+   - serviceConfig [可以根据配置调整优先级至第3或者第5]
+   - propertiesConfiguration [一般都是yml里属于dubbo的配置信息]
 
+#### 11. URL && INVOKER
 
+- URL: URL是指服务的所有资源信息
+- INVOKER: 实际调用者（会从根据ref从map里取到真正的service provider）
+  - 包含所有服务信息的对象，可以用来执行服务的导出和注销
+- 通过zkClient.create()和zk进行通信，将服务的具体信息处理成对应规则的数据传输至zk
+- 服务注册：构造服务的url，剔除冗余的key,注册至zk（就是zkClient.create()）
 
