@@ -83,8 +83,6 @@ dubbo:
 ```
 
 ```xml
-
-
 <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -122,8 +120,62 @@ dubbo:
             <artifactId>curator-recipes</artifactId>
             <version>5.1.0</version>
         </dependency>
-    </dependencies>```
+    </dependencies> 
+```
+    
+    
+    
+    
+    
+    
+    
+#### 10.关于dubbo是如何读取配置以及获取配置的几种方式
 
+ - dubbo项目有几种配置
+   - SystemConfiguration [jvm级别的环境变量，idea中使用-D配置的变量就是jvm级别]
+   - EnvironmentConfiguration [操作系统级别的环境变量]
+   - InmemoryConfiguration [来源于appExternalConfigurationMap]
+   - InmemoryConfigurationexternalConfigurationMap ?
+   - serviceConfig [可以根据配置调整优先级至第3或者第5]
+   - propertiesConfiguration [一般都是yml里属于dubbo的配置信息]
+ - 关于配置的优先级
+   - **动态配置 > VM OPTION > reference > 其他**
 
+#### 11. URL && INVOKER
 
+- URL: URL是指服务的所有资源信息
+- INVOKER: 实际调用者（会从根据ref从map里取到真正的service provider）
+  - 包含所有服务信息的对象，可以用来执行服务的导出和注销
+- 通过zkClient.create()和zk进行通信，将服务的具体信息处理成对应规则的数据传输至zk
+- 服务注册：构造服务的url，剔除冗余的key,注册至zk（就是zkClient.create()）
+- 在进行了动态配置以后，会将更改后的url和origin url先进行比对，如果有改变才会reExport, reExport不需要重启netty
+- 服务注册：构造服务信息的url，然后将url注册到zookeeper上
 
+#### 服务引入
+
+- 代理对象调用方法的前置处理：
+  - 获取服务提供者列表
+  - mock
+  - 路由
+  - 负载均衡
+  - 集群容错
+  - 构造nettyClient
+  - 发送数据（通过 invocation）
+  
+- 如何生成一个代理对象
+  - 1.构造Invoker (有多少个url就会生成多少个Invoker)
+  - 2.服务目录(就是本地缓存) RegistryDirectory.class
+    - 2.1 根据serviceName去注册中心上查
+    - 2.2 根据拿到的list<provider> 有多少个URL(**代表的就是服务信息**)就生成多少个list<dubboInvoker>
+    - 2.3 监听（监听这个服务的变化）
+    - 2.4 路由 RegistryDirectory.list()[返回值是list<invoker>]
+    - 2.5 路由链 tagRouter--->appRouter--->ServiceRouter-->（监听路由conditions）
+  - 如何构造一个invoker和服务目录
+    - 服务目录： 
+    - invoker:
+- cluster.join()[**没懂**]
+- 路由种类
+  - tagRouter[灰度发布的时候可以用]
+  - appStateRouter
+  - conditionRouter 
+  

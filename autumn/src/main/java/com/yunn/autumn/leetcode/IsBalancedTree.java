@@ -30,4 +30,23 @@ public class IsBalancedTree {
         // 返回值没什么用
         return Math.max(lDepth, rDepth) + 1;
     }
+
+    /**
+     *
+     * @date 2022/12/29
+     */
+    public boolean isBalanced2(TreeNode root) {
+        return dfs(root) != -1;
+    }
+
+    // 后序遍历二叉树
+    int dfs(TreeNode node) {
+        if (node == null) return 0;
+        int left = dfs(node.left);
+        int right = dfs(node.right);
+        // 如果有返回值是-1的结点，则会层层向上递归返回，避免重复计算
+        if (left == -1 || right == -1) return -1;
+        // 如果左右子树的高度差大于1则说明不是平衡二叉树，否则直接返回其高度
+        return Math.abs(left - right) > 1 ? -1 : Math.max(left, right) + 1;
+    }
 }

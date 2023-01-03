@@ -21,7 +21,7 @@ public class _56_1 {
 
     @Test
     public void test() {
-        int[] arr = new int[]{2,2,3,3,1};
+        int[] arr = new int[]{2, 2, 3, 3, 1};
         System.out.println(Arrays.toString(singleNumber1(arr)));
 
     }
