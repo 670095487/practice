@@ -177,5 +177,9 @@ dubbo:
 - 路由种类
   - tagRouter[灰度发布的时候可以用]
   - appStateRouter
-  - conditionRouter 
+  - conditionRouter
+
+
+#### dubbo源码阅读 
+- 启动入口：DubboConfigApplicationListener.onApplicationEvent()
   
