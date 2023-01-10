@@ -122,13 +122,13 @@ dubbo:
         </dependency>
     </dependencies> 
 ```
-    
-    
-    
-    
-    
-    
-    
+
+
+​    
+​    
+​    
+​    
+​    
 #### 10.关于dubbo是如何读取配置以及获取配置的几种方式
 
  - dubbo项目有几种配置
@@ -180,6 +180,62 @@ dubbo:
   - conditionRouter
 
 
-#### dubbo源码阅读 
-- 启动入口：DubboConfigApplicationListener.onApplicationEvent()
-  
+#### dubbo源码阅读 版本：2.6.x
+- 启动入口：ServiceBean.class 主要链路如下：
+
+  - ServiceBean.class[onApplicationEvent()] --> ServiceConfig.class[doExport() --> doExportUrls()[1. 初始化map存放服务信息，--> 初始化url对象 --> 调用proxyFactory.getInvoker()为每一个url生成对应的invoker]
+
+    --> 将生成的Invoker再包装一层变成Exporter类型的对象(一个invoker属性一个boolean unexport)-->然后加入到**exporters**(本质是个list) --> openServer(url)] 
+
+    -->  RegistryProtocal.class (到这里已经开启了服务，生成了对应的代理服务)
+
+    --> 发布ServiceBeanExportedEvent
+
+    **看样子是dubbo完成所有了服务导出步骤以后，通知spring可以刷新容器了，然后spring从被dubbo打断的地方（onApplicationEvent()）这个方法结束以后spring容器开始正常启动成功
+
+  - ```java
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+            if (isDelay() && !isExported() && !isUnexported()) {
+                if (logger.isInfoEnabled()) {
+                    logger.info("The service ready on spring started. service: " + getInterface());
+                }
+                export();
+            }
+        }
+    ```
+
+  - ```java
+    // 方法内容有删除
+    protected synchronized void doExport() { 
+            if (ref instanceof GenericService) {
+                interfaceClass = GenericService.class;
+                if (StringUtils.isEmpty(generic)) {
+                    generic = Boolean.TRUE.toString();
+                }
+            } else {
+                try {
+                    // 反射生成需要代理的service,就是provider的接口全限定名
+                    interfaceClass = Class.forName(interfaceName, true, Thread.currentThread()
+                            .getContextClassLoader());
+                } catch (ClassNotFoundException e) {
+                    throw new IllegalStateException(e.getMessage(), e);
+                }
+            // 中间都是一些合法性校验
+            // ……
+            // ……
+            
+            // 导出服务的url    
+            doExportUrls();
+            CodecSupport.addProviderSupportedSerialization(getUniqueServiceName(), getExportedUrls());
+            ProviderModel providerModel = new ProviderModel(getUniqueServiceName(), this, ref);
+            ApplicationModel.initProviderModel(getUniqueServiceName(), providerModel);
+        }
+    ```
+
+    
+
+  - ```java
+     Invoker<?> invoker = proxyFactory.getInvoker(ref, (Class) interfaceClass, registryURL.addParameterAndEncoded(Constants.EXPORT_KEY, url.toFullString()));
+    ```
+
+  - 
