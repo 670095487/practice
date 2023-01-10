@@ -6,11 +6,15 @@ package com.yunn.autumn.designpatterns.observe;
 public class App {
 
     public static void main(String[] args) {
-        EventManager eventManager = new EventManager();
-        eventManager.subscribe("x", new EventListener("1"));
-        eventManager.subscribe("b", new EventListener("2"));
-        eventManager.subscribe("d", new EventListener("3"));
-        eventManager.notify("x","x-name");
-        eventManager.unsubscribe("x", new EventListener("1"));
+        Editor editor = new Editor();
+        editor.events.subscribe("open", new LogOpenListener("/path/to/log/file.txt"));
+        editor.events.subscribe("save", new EmailNotificationListener("admin@example.com"));
+
+        try {
+            editor.openFile("test.txt");
+            editor.saveFile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

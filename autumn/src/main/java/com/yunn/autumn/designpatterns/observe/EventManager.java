@@ -1,5 +1,6 @@
 package com.yunn.autumn.designpatterns.observe;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,29 +11,28 @@ import java.util.Map;
  */
 public class EventManager {
 
-    // eventType-listeners
     Map<String, List<EventListener>> listeners = new HashMap<>();
 
-    public EventManager(String... eventType) {
-        for (String et : eventType) {
-            listeners.put(et, new ArrayList<>());
+    public EventManager(String... operations) {
+        for (String operation : operations) {
+            this.listeners.put(operation, new ArrayList<>());
         }
     }
 
-    public void subscribe(String eventType, EventListener eventListener) {
+    public void subscribe(String eventType, EventListener listener) {
         List<EventListener> users = listeners.get(eventType);
-        users.add(eventListener);
+        users.add(listener);
     }
 
-    public void unsubscribe(String eventType, EventListener eventListener) {
+    public void unsubscribe(String eventType, EventListener listener) {
         List<EventListener> users = listeners.get(eventType);
-        users.remove(eventListener);
+        users.remove(listener);
     }
 
-    public void notify(String eventType, String name) {
+    public void notify(String eventType, File file) {
         List<EventListener> users = listeners.get(eventType);
-        for (EventListener eventListener : users) {
-            eventListener.update(eventType ,name);
+        for (EventListener listener : users) {
+            listener.update(eventType, file);
         }
     }
 

@@ -1,5 +1,7 @@
 package com.yunn.interview.interviewquestion.hot100;
 
+import java.util.Arrays;
+
 /**
  * @author yunN
  * @date 2023/01/05.
@@ -7,18 +9,22 @@ package com.yunn.interview.interviewquestion.hot100;
 public class FindMedianSortedArrays {
 
     /**
-     *
-        - 先合并2个数组
-            - 中位数：
-                - 1.奇数个：n/2 + 1
-                - 2.偶数个：n/2 + n/2 + 1
+     * - 先合并2个数组
+     * - 中位数：
+     * - 1.奇数个：n/2 + 1
+     * - 2.偶数个：n/2 + n/2 - 1
      */
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         double ans = 0;
-
-
-
-
+        int[] sorted = merge(nums1, nums2);
+        System.out.println(Arrays.toString(sorted));
+        int n = sorted.length;
+        if (n % 2 == 0) {
+            ans = sorted[n / 2] + sorted[n / 2 - 1];
+            ans /= 2;
+        } else {
+            ans = sorted[n / 2];
+        }
         return ans;
 
     }
@@ -31,14 +37,14 @@ public class FindMedianSortedArrays {
         while (p1 < m || p2 < n) {
             if (p1 == m) {
                 cur = nums2[p2++];
-            } else if (p2 == n){
+            } else if (p2 == n) {
                 cur = nums1[p1++];
             } else if (nums1[p1] < nums2[p2]) {
                 cur = nums1[p1++];
             } else {
                 cur = nums2[p2++];
             }
-            sorted[p1+p2-1] = cur;
+            sorted[p1 + p2 - 1] = cur;
         }
         return sorted;
     }
