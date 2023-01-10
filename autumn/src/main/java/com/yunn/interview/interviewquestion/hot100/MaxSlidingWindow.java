@@ -1,8 +1,8 @@
 package com.yunn.interview.interviewquestion.hot100;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.PriorityQueue;
+import org.junit.Test;
+
+import java.util.*;
 
 /**
  * @author yunN
@@ -32,11 +32,62 @@ public class MaxSlidingWindow {
         return ints;
     }
 
-    public int[] maxSlidingWindow(int[] nums, int k) {
-        PriorityQueue<int[]> queue = new PriorityQueue<>((a,b)->a[1] - b[1]);
+    @Test
+    public void test() {
+        int[] nums = new int[]{1, 3, -1, -3, 5, 3, 6, 7};
+        maxSlidingWindow(nums, 3);
     }
 
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        MyQueue queue = new MyQueue();
+        for (int i = 0; i < k; i++) {
+            queue.push(nums[i]);
+        }
 
+        // 数组初始化长度
+        int[] res = new int[nums.length - k + 1];
+        int index = 0;
+        res[index++] = queue.getMaxValue();
+        for (int i = k; i < nums.length; i++) {
+            // 移除滑动窗口最左边的元素
+            queue.poll(nums[i - k]);
+            // 将当前值放入队列
+            queue.push(nums[i]);
+            // 将当前最大值放入数组
+            res[index++] = queue.getMaxValue();
+        }
+
+        return res;
+    }
+
+    class MyQueue {
+
+        private Deque<Integer> deque = new LinkedList<>();
+
+        public MyQueue() {
+        }
+
+        public int getMaxValue() {
+            if (!deque.isEmpty()) {
+                return deque.peek();
+            }
+            return 0;
+        }
+
+        // push进队列的条件，当前push进去的值
+        public void push(int val) {
+            while (!deque.isEmpty() && val > deque.getLast()) {
+                deque.removeLast();
+            }
+            deque.add(val);
+        }
+
+        public void poll(int val) {
+            if (!deque.isEmpty() && val == deque.peek()) {
+                deque.poll();
+            }
+        }
+    }
 
 
     public static void main(String[] args) {
