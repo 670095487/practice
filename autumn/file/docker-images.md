@@ -36,18 +36,18 @@
          FROM nginx
          RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
     
-	2. 特殊镜像：scratch ，使用此镜像意味着 你打包的镜像不会以任何镜像为基础，	
+    2. 特殊镜像：scratch ，使用此镜像意味着 你打包的镜像不会以任何镜像为基础，	
 	接下来你所写的指令会作为镜像的第一层开始存在。
 
-	3.  **RUN命令** ⭐️⭐️⭐️⭐️⭐️
-		- shell格式 ： RUN<命令> ，就像直接在命令行中输入的命令一样
-		```dockerfile
-		RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
-		```
+    3. **RUN命令** ⭐️⭐️⭐️⭐️⭐️
+        - shell格式 ： RUN<命令> ，就像直接在命令行中输入的命令一样
+        ```dockerfile
+        RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
+        ```
 		
-		- exec格式：RUN ["可执行文件", "参数1", "参数2"]
+        - exec格式：RUN ["可执行文件", "参数1", "参数2"]
 		
-		- 每一层run命令，都会commit一次镜像
+        - 每一层run命令，都会commit一次镜像
 		
-	 4. 构建镜像
-	    - docker build
+    4. 构建镜像
+       - docker build
