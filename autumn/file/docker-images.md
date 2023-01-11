@@ -36,8 +36,6 @@
          FROM nginx
          RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
     
-    
-  
 	2. 特殊镜像：scratch ，使用此镜像意味着 你打包的镜像不会以任何镜像为基础，	
 	接下来你所写的指令会作为镜像的第一层开始存在。
 
