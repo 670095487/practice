@@ -31,12 +31,12 @@
   - 什么是docker file?
     - 本质上是一个文本文件，其内包含了多条指令，每个指令构建一层，指令的内容就是描述该层应当如何构建
 - 如何写一个docker file?
-    1. 使用**From**关键字指定镜像,
-      example:
-       ```dockerfile
+    1. 使用**From**关键字指定镜像,example:
+        ```dockerfile
          FROM nginx
          RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
-  ```
+    
+    
   
 	2. 特殊镜像：scratch ，使用此镜像意味着 你打包的镜像不会以任何镜像为基础，	
 	接下来你所写的指令会作为镜像的第一层开始存在。
@@ -46,8 +46,9 @@
 		```dockerfile
 		RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
 		```
+		
 		- exec格式：RUN ["可执行文件", "参数1", "参数2"]
-
+		
 		- 每一层run命令，都会commit一次镜像
 		
 	 4. 构建镜像
