@@ -1,9 +1,9 @@
 package com.yunn.workquestion;
 
+import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
-import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
