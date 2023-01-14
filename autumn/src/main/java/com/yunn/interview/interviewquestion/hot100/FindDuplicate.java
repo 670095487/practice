@@ -2,21 +2,27 @@ package com.yunn.interview.interviewquestion.hot100;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-
 /**
  * @author yunN
  * @date 2023/01/11.
  */
 public class FindDuplicate {
 
-    // 二进制异或
+    // 使用LC142环形链表的思想
     public int findDuplicate(int[] nums) {
-        for (int i = 1; i < nums.length; i++) {
-            nums[i] = nums[i - 1] ^ nums[i];
+        int slow = 0, fast = 0;
+        slow = nums[slow];
+        fast = nums[nums[fast]];
+        while (slow != fast) {
+            slow = nums[slow]; // 类似链表中的node = node.next;
+            fast = nums[nums[fast]]; // 类似链表中的node = node.next.next
         }
-        System.out.println(Arrays.toString(nums));
-        return nums[nums.length - 1];
+        int pre1 = 0, pre2 = slow; 
+        while (pre1 != pre2) {
+            pre1 = nums[pre1];
+            pre2 = nums[pre2];
+        }
+        return pre1;
     }
 
     @Test
