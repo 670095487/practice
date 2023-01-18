@@ -2,7 +2,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     username: root
-    password: 4`5~DgraHm*E
+    password: ${pwd}
     url: jdbc:mysql://139.196.59.54:2631/yunn?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
 
 #nacos.config.server-addr=81.69.227.238:8848
