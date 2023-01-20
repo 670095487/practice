@@ -20,7 +20,7 @@ public class NacosLearnApplication {
         ConfigurableApplicationContext context = SpringApplication.run(NacosLearnApplication.class, args);
         AsyncConfig asyncConfig = context.getBean(AsyncConfig.class);
         Executor executor = asyncConfig.getAsyncExecutor();
-
+        System.out.println("boost successfully");
     }
 
 }

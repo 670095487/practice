@@ -2,6 +2,7 @@ package com.yunn.autumnnacos.controller;
 
 
 import com.alibaba.nacos.api.config.annotation.NacosValue;
+import com.yunn.autumnnacos.service.AsyncTaskService;
 import com.yunn.autumnnacos.service.impl.TransactionalLearnService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class UserController {
 
     private final TransactionalLearnService transactionalLearnService;
+
+    private final AsyncTaskService asyncTaskService;
 
     @GetMapping
     public String testConnect() {
@@ -33,5 +36,16 @@ public class UserController {
     @GetMapping("/yml")
     public void readYml() {
         transactionalLearnService.readYmlProps();
+    }
+
+    @GetMapping("/async")
+    public String testAsync() throws Exception {
+        System.out.println("main=>" + Thread.currentThread().getName());
+        String result = "RS1";
+        for (int i = 0; i < 100; i++) {
+            asyncTaskService.runWithAsync(i);
+        }
+        result = "RS2";
+        return result;
     }
 }

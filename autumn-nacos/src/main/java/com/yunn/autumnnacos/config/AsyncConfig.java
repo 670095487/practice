@@ -17,6 +17,6 @@ import java.util.concurrent.Executors;
 public class AsyncConfig implements AsyncConfigurer {
     @Override
     public Executor getAsyncExecutor() {
-        return Executors.newCachedThreadPool();
+        return Executors.newWorkStealingPool();
     }
 }
