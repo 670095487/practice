@@ -27,7 +27,7 @@ public class AsyncTaskService {
      * 有结果的异步返回
      */
     @Async
-    public Future<List<String>> getNamesWithAsync(int idx) throws Exception {
+    public CompletableFuture<List<String>> getNamesWithAsync(int idx) throws Exception {
         System.out.println("step2...");
         return CompletableFuture.supplyAsync(() -> {
             List<String> list = new ArrayList<>();
@@ -35,9 +35,10 @@ public class AsyncTaskService {
                 System.out.println("name ==> " + i);
                 list.add("name ==> " + i);
                 try {
-                    TimeUnit.SECONDS.sleep(5);
+                    TimeUnit.SECONDS.sleep(1);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    return list;
                 }
             }
             return list;

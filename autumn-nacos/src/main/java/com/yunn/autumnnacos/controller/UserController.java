@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -56,19 +59,33 @@ public class UserController {
     @GetMapping("/async")
     public List<String> testAsyncHasReturnValue() {
         List<String> ans = new ArrayList<>();
-        Future<List<String>> future = null;
+        CompletableFuture<List<String>> future = null;
         System.out.println("step1...");
         try {
-            future = asyncTaskService.getNamesWithAsync(100);
+            future = asyncTaskService.getNamesWithAsync(10);
             // ans = future.get();
         } catch (Exception ex) {
             //
             ans.add("exception happened");
         }
         System.out.println("step3...");
+        assert future != null;
+        // 异步结果不需要给调用者
         if (future.isDone()) {
-            System.out.println("do something....");
+            List<String> result = new ArrayList<>();
+            try {
+                result = future.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Async step is done, going to do another thing....");
+            System.out.println("first result is :"+result.get(0));
+
         }
+        // 异步结果需要给调用者
+        List<String> result = future.join();
+        System.out.println("Async step is done, going to do another thing....");
+        System.out.println("first result is :"+result.get(0));
         ans.add("\"name ==> \" + idx");
         return ans;
     }

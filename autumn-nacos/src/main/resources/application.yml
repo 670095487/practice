@@ -1,4 +1,6 @@
 spring:
+  logging:
+    level: DEBUG
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     username: root
@@ -26,3 +28,5 @@ test1:
     - cn
 server:
   port: 9001
+
+
