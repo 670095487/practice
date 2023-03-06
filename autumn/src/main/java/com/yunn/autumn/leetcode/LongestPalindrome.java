@@ -2,9 +2,6 @@ package com.yunn.autumn.leetcode;
 
 import org.junit.Test;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
 /**
  * @author yunN
  * @date 2022/04/19

@@ -2,7 +2,6 @@ package com.yunn.autumn.practice.model;
 
 import lombok.Builder;
 import lombok.Data;
-import org.junit.Test;
 
 /**
  * @author yunN

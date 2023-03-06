@@ -1,7 +1,6 @@
 package com.yunn.autumnnacos;
 
 import com.yunn.autumnnacos.config.AsyncConfig;
-import com.yunn.autumnnacos.service.AsyncTaskService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

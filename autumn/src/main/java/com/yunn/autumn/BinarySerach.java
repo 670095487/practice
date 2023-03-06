@@ -2,8 +2,6 @@ package com.yunn.autumn;
 
 import org.junit.Test;
 
-import javax.naming.NoInitialContextException;
-
 /**
  * @author yunN
  * @date 2022/11/17

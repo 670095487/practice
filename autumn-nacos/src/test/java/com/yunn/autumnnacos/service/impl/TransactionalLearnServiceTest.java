@@ -39,6 +39,6 @@ public class TransactionalLearnServiceTest {
 
     @Test
     public void testConvertDToT() {
-        System.out.println(transactionalLearnService.convertDToT());
+        System.out.println(transactionalLearnService.convertDO2Vo());
     }
 }

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GroupDTO implements OutputConverter<GroupDTO, Group> {
+public class GroupVo implements OutputConverter<GroupVo, GroupDo> {
 
     public String name;
 

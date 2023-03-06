@@ -1,6 +1,7 @@
 package com.yunn.autumn.thread.threadenhance3.atomic.atomicboolean;
 
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 

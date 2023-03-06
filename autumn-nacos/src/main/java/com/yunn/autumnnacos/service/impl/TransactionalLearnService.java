@@ -1,8 +1,8 @@
 package com.yunn.autumnnacos.service.impl;
 
 import com.yunn.autumnnacos.mapper.TranscationMapper;
-import com.yunn.autumnnacos.model.Group;
-import com.yunn.autumnnacos.model.GroupDTO;
+import com.yunn.autumnnacos.model.GroupDo;
+import com.yunn.autumnnacos.model.GroupVo;
 import com.yunn.autumnnacos.model.TranscationLearnDo;
 import com.yunn.autumnnacos.model.YmlProps;
 import lombok.RequiredArgsConstructor;
@@ -54,29 +54,42 @@ public class TransactionalLearnService {
         return ymlProps.getValsTry();
     }
 
-    public List<GroupDTO> convertDToT() {
+    public List<GroupVo> convertDO2Vo() {
 
-        List<Group> group = getGroup();
-        List<GroupDTO> ans = new ArrayList<>();
-        for (Group g : group) {
-            GroupDTO t = new GroupDTO();
-            GroupDTO groupDTO = t.convertFrom(g);
+        List<GroupDo> groupDo = getGroupDos();
+        List<GroupVo> ans = new ArrayList<>();
+        for (GroupDo g : groupDo) {
+            GroupVo t = new GroupVo();
+            GroupVo groupDTO = t.convertFrom(g);
             ans.add(groupDTO);
 
         }
         return ans;
     }
 
-    private List<Group> getGroup() {
-        Group group = new Group();
-        group.setName("n1");
-        group.setX(1L);
-        Group group2 = new Group();
-        group2.setName("n2");
-        group2.setX(2L);
-        Group group3 = new Group();
-        group3.setName("n3");
-        group3.setX(3L);
-        return Arrays.asList(group, group2, group3);
+    private List<GroupDo> getGroupDos() {
+        GroupDo groupDo = new GroupDo();
+        groupDo.setName("n1");
+        groupDo.setX(1L);
+        GroupDo groupDo2 = new GroupDo();
+        groupDo2.setName("n2");
+        groupDo2.setX(2L);
+        GroupDo groupDo3 = new GroupDo();
+        groupDo3.setName("n3");
+        groupDo3.setX(3L);
+        return Arrays.asList(groupDo, groupDo2, groupDo3);
+    }
+
+    private List<GroupVo> getGroupVos() {
+        GroupVo groupVo = new GroupVo();
+        groupVo.setName("n1");
+        groupVo.setX(1L);
+        GroupVo groupVo2 = new GroupVo();
+        groupVo2.setName("n2");
+        groupVo2.setX(2L);
+        GroupVo groupVo3 = new GroupVo();
+        groupVo3.setName("n3");
+        groupVo3.setX(3L);
+        return Arrays.asList(groupVo, groupVo2, groupVo3);
     }
 }

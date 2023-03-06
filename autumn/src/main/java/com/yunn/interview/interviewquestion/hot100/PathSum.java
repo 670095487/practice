@@ -2,8 +2,6 @@ package com.yunn.interview.interviewquestion.hot100;
 
 import com.yunn.autumn.leetcode.TreeNode;
 
-import java.util.LinkedList;
-
 /**
  * @author yunN
  * @date 2023/01/30.
